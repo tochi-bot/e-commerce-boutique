@@ -25,20 +25,56 @@ SECRET_KEY = 'django-insecure-+5dso98a&k+q*n&w!k=yp3f@q0r$90zhuu(yw(n@ya@ne!i^i8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-tochibot-ecommercebouti-e72uu2l43y9.ws.codeinstitute-ide.net']
+# Define the hosts your application can serve. This prevents HTTP Host header attacks.
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '8000-tochibot-ecommercebouti-e72uu2l43y9.ws.codeinstitute-ide.net',  # Add your development or production domains here
+]
 
+# Add trusted origins for CSRF protection. These should match the domains in ALLOWED_HOSTS.
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-tochibot-ecommercebouti-e72uu2l43y9.ws.codeinstitute-ide.net',
+]
 
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',  # Required by 'django-allauth'
+    'allauth',  # Django-allauth for authentication
+    'allauth.account',  # Account management via django-allauth
+    'allauth.socialaccount',  # Social account management via django-allauth
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'e_commerce',
+    'e_commerce',  # Your custom app
 ]
+
+# Authentication backends. Order matters: Django tries them in the given order.
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',  # Default Django authentication backend
+    'allauth.account.auth_backends.AuthenticationBackend',  # Allauth authentication backend
+)
+
+
+# Site ID for the django.contrib.sites framework. Must match the ID in your database.
+SITE_ID = 1
+
+# Email backend for development purposes. Prints emails to the console.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Allauth settings
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'  # Allow login via username or email
+ACCOUNT_EMAIL_REQUIRED = True  # Require email during signup
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # Require email verification after signup
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True  # Require email to be entered twice during signup
+ACCOUNT_USERNAME_MIN_LENGTH = 4  # Minimum length for usernames
+LOGIN_URL = '/accounts/login/'  # URL to redirect to for login
+LOGIN_REDIRECT_URL = '/'  # URL to redirect to after login
+LOGOUT_REDIRECT_URL = '/'  # URL to redirect to after logout
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -48,6 +84,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',  # Middleware for django-allauth
 ]
 
 ROOT_URLCONF = 'boutique.urls'
@@ -55,36 +92,31 @@ ROOT_URLCONF = 'boutique.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [],  # Add your template directories here if any
+        'APP_DIRS': True,  # Enable Django to look for templates in each app's directory
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
+                'django.contrib.auth.context_processors.auth',  # Required by django-allauth
                 'django.contrib.messages.context_processors.messages',
             ],
         },
     },
 ]
 
+
 WSGI_APPLICATION = 'boutique.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+# Database configuration. Uses SQLite by default.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',  # Path to the database file
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
-
+# Password validation to enforce strong passwords.
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -100,25 +132,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Internationalization settings
+LANGUAGE_CODE = 'en-us'  # Language code for the application
+TIME_ZONE = 'UTC'  # Time zone for the application
+USE_I18N = True  # Enable Django's translation system
+USE_TZ = True  # Enable timezone support
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = 'static/'
+# Static files configuration
+STATIC_URL = 'static/'  # URL prefix for static files
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'  # Default primary key field type
