@@ -1,16 +1,21 @@
+/* Set the height of the HTML element to 100% to allow full viewport coverage */
 html {
     height: 100%;
 }
 
+/* Style the body with a full-screen background image that is fixed, 
+   covering the entire viewport minus 164px for the header. 
+   Also sets the default text color and font family. */
 body {
     background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
     background-size: cover;
-    height: calc(100vh - 164px);
-    color: #555;
-    font-family: 'Lato';
+    height: calc(100vh - 164px);  /* Adjust height to account for a fixed header */
+    color: #555;  /* Set default text color */
+    font-family: 'Lato', sans-serif;  /* Set the font family with a fallback */
 }
 
-/* from Bulma */
+/* Icon styling from Bulma framework 
+   Ensures icons are centered and have a consistent size */
 .icon {
     align-items: center;
     display: inline-flex;
@@ -19,62 +24,76 @@ body {
     width: 1.5rem;
 }
 
+/* Set the logo font to be uppercase */
 .logo-font {
     text-transform: uppercase;
 }
 
+/* Ensure the main logo link only takes up as much space as needed */
 .main-logo-link {
     width: fit-content;
 }
 
+/* Style for the "Shop Now" button */
 .shop-now-button {
     background: black;
     color: white;
-    min-width: 260px;
+    min-width: 260px;  /* Ensure a minimum width for the button */
 }
 
+/* Generic button style for black buttons */
 .btn-black {
     background: black;
     color: white;
 }
 
+/* Hover, active, and focus states for the "Shop Now" button and black buttons */
 .shop-now-button:hover,
 .shop-now-button:active,
 .shop-now-button:focus,
 .btn-black:hover,
 .btn-black:active,
 .btn-black:focus {
-    background: #222;
-    color: white;
+    background: #222;  /* Darken the background on interaction */
+    color: white;  /* Keep the text color white */
 }
 
+/* Utility class to force black text color */
 .text-black {
     color: #000 !important;
 }
 
+/* Utility class to add a black border */
 .border-black {
     border: 1px solid black !important;
 }
 
+/* Utility class to force a black background */
+.bg-black {
+    background: #000 !important;
+}
+
 /* -------------------------------- Media Queries */
 
-/* Slightly larger container on xl screens */
+/* Slightly larger container width on extra-large screens (min-width: 1200px) */
 @media (min-width: 1200px) {
   .container {
-    max-width: 80%;
+    max-width: 80%;  /* Increase container width */
   }
 }
 
-/* fixed top navbar only on medium and up */
+/* Fixed top navbar only on medium screens and up (min-width: 992px) */
 @media (min-width: 992px) {
+    /* Fix the navbar at the top of the page on larger screens */
     .fixed-top-desktop-only {
         position: fixed;
         top: 0;
         right: 0;
         left: 0;
-        z-index: 1030;
+        z-index: 1030;  /* Ensure navbar stays on top */
     }
 
+    /* Add padding to the header container to account for the fixed navbar */
     .header-container {
         padding-top: 164px;
     }
