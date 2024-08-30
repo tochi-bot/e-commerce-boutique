@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os  # Add this import
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -52,8 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'e_commerce',  #  custom app
-    'home', #home app
+    'e_commerce',  # Custom app
+    'home',  # Home app
 ]
 
 # Authentication backends. Order matters: Django tries them in the given order.
@@ -61,7 +61,6 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',  # Default Django authentication backend
     'allauth.account.auth_backends.AuthenticationBackend',  # Allauth authentication backend
 )
-
 
 # Site ID for the django.contrib.sites framework. Must match the ID in your database.
 SITE_ID = 1
@@ -96,9 +95,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'templates',
-            BASE_DIR / 'templates' / 'allauth',
-        ], # Add your template directories here if any
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'templates', 'allauth')
+        ],
         'APP_DIRS': True,  # Enable Django to look for templates in each app's directory
         'OPTIONS': {
             'context_processors': [
@@ -110,7 +109,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 WSGI_APPLICATION = 'boutique.wsgi.application'
 

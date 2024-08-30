@@ -19,12 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('home.urls')),
-    path('accounts/', include('allauth.urls')),
-    path('accounts/signup/', include('allauth.urls')),  
-    path('accounts/login/', include('allauth.urls')),
-   
-     
-   
+    path('', include('home.urls')),  # Include the URLs for your home app
+    path('accounts/', include('allauth.urls')),  # Include allauth URLs for account management
 ]
 
