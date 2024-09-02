@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'e_commerce',  # Custom app
     'home',  # Home app
+    'products',# products app
 ]
 
 # Authentication backends. Order matters: Django tries them in the given order.
