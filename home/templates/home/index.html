@@ -1,32 +1,36 @@
-{% extends "base.html"%}
-{% load static%}
+{% extends "base.html" %}
+{% load static %}
 
-{% block page_header%}
-<div class="container header-container">
-    <div class="row">
-        <div class="col">
-
+{% block page_header %}
+    <!-- Block for the page header section, can contain a banner or introductory content -->
+    <div class="container header-container">
+        <div class="row">
+            <div class="col">
+                <!-- Empty column for potential header content -->
+            </div>
         </div>
     </div>
-</div>
-{% endblock%}
+{% endblock %}
 
 {% block content %}
+    <!-- Main content block for the landing page -->
 
-<div class="container h-100">
-    <div class="row h-100">
-        <div class="col-7 col-6 my-auto">
-            <h1 class="display-4 logo-font text-block">The new collections are ready</h1>
+    <div class="container h-100">
+        <!-- Full-height container to center content vertically -->
+        <div class="row h-100">
+            <!-- Left-side column for text content -->
+            <div class="col-7 col-6 my-auto">
+                <!-- Main headline with logo-font and large text -->
+                <h1 class="display-4 logo-font text-block">The new collections are ready</h1>
+            </div>
 
+            <!-- Right-side section with the "Shop Now" button -->
+            <div class="my-5">
+                <h4>
+                    <!-- Button linking to the 'products' page -->
+                    <a href="{% url 'products' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Shop Now</a>
+                </h4>
+            </div>
         </div>
-        <div class="my-5">
-            <h4 >
-                <a href="{% url 'products' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Shop Now</a>
-            </h4>
-
-        </div>
-
     </div>
-
-</div>
 {% endblock %}
