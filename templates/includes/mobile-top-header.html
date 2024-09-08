@@ -63,7 +63,7 @@
 <!-- List item for mobile shopping cart icon and total -->
 <li class="list-inline-item">
     <!-- Mobile shopping cart button, visible only on smaller screens (d-block d-lg-none) -->
-    <a class="{% if grand_total %}text-primary font-weight-bold{% else %}text-black{% endif %} nav-link d-block d-lg-none" href="">
+    <a class="{% if grand_total %}text-primary font-weight-bold{% else %}text-black{% endif %} nav-link d-block d-lg-none" href="{% url 'view_bag' %}">
         <div class="text-center">
             <!-- Shopping bag icon -->
             <div><i class="fas fa-shopping-bag fa-lg"></i></div>
