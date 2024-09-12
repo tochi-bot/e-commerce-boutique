@@ -115,6 +115,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'boutique.wsgi.application'
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 # Database configuration. Uses SQLite by default.
 DATABASES = {
     'default': {
