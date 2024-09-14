@@ -1,0 +1,48 @@
+/* 
+   Styles for the Stripe card input element and custom input fields used in the checkout form.
+   These styles ensure the Stripe input looks consistent with the rest of the form elements.
+*/
+
+/* General styling for the Stripe element and custom input fields */
+.StripeElement,
+.stripe-style-input {
+  box-sizing: border-box;  /* Ensure padding and border are included in the element's width and height */
+  height: 40px;  /* Set the height of the input fields */
+  padding: 10px 12px;  /* Add padding inside the input fields */
+  border: 1px solid transparent;  /* Default border is transparent */
+  border-radius: 0px;  /* No border-radius for square corners */
+  background-color: white;  /* Background color for input fields */
+  box-shadow: 0 1px 3px 0 #e6ebf1;  /* Light box shadow for a subtle 3D effect */
+  -webkit-transition: box-shadow 150ms ease;  /* Smooth transition effect for box-shadow when focus changes (Safari) */
+  transition: box-shadow 150ms ease;  /* Smooth transition effect for box-shadow when focus changes */
+}
+
+/* Styles for when the Stripe element or custom input is focused or active */
+.StripeElement--focus,
+.stripe-style-input:focus,
+.stripe-style-input:active {
+  box-shadow: 0 1px 3px 0 #cfd7df;  /* Slightly darker shadow when the field is focused, giving it an active look */
+}
+
+/* Styling for when the browser autofills a Stripe input field (Safari/Chrome) */
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;  /* Autofill background color set to a light yellow */
+}
+
+/* Placeholder text styling for custom input fields */
+.stripe-style-input::placeholder {
+    color: #aab7c4;  /* Set placeholder text color to light gray */
+}
+
+/* Fieldset label positioning for form elements */
+.fieldset-label {
+    position: relative;  /* Position relative to other form elements */
+    right: .5rem;  /* Slight adjustment to the right for better alignment */
+}
+
+/* Styling for the payment form's input fields and the Stripe card element */
+#payment-form .form-control,
+#card-element {
+    color: #000;  /* Set the text color to black for high contrast */
+    border: 1px solid #000;  /* Add a solid black border around the input fields */
+}
