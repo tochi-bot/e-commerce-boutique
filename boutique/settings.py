@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'home',  # Home app
     'products',# products app
     'bag', # bag app
+    'checkout', #checkout app
 ]
 
 # Authentication backends. Order matters: Django tries them in the given order.
