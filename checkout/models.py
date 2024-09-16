@@ -37,7 +37,7 @@ class Order(models.Model):
         This method calculates the order total and adjusts for delivery costs.
         """
         # Calculate the total of all line items
-        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum']
+        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum']or 0
         
         # Determine delivery cost based on whether the total is below the free delivery threshold
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
