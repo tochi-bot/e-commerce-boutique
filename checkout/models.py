@@ -3,6 +3,7 @@ import uuid  # Used to generate unique order numbers
 from django.db import models  # Provides access to Django's model system
 from django.db.models import Sum  # Used to calculate the sum of line items
 from django.conf import settings  # Access to project settings
+from django_countries.fields import CountryField
 
 from products.models import Product  # Import the Product model from the products app
 
@@ -13,7 +14,7 @@ class Order(models.Model):
     full_name = models.CharField(max_length=50, null=False, blank=False)  # Full name of the customer
     email = models.EmailField(max_length=254, null=False, blank=False)  # Customer email address
     phone_number = models.CharField(max_length=20, null=False, blank=False)  # Customer phone number
-    country = models.CharField(max_length=40, null=False, blank=False)  # Customer's country
+    country = CountryField(blank_label='Country *', null=False, blank=False)# Customer's country
     postcode = models.CharField(max_length=20, null=True, blank=True)  # Postal code, optional field
     town_or_city = models.CharField(max_length=40, null=False, blank=False)  # Customer's town or city
     street_address1 = models.CharField(max_length=80, null=False, blank=False)  # Primary street address
@@ -23,6 +24,8 @@ class Order(models.Model):
     delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)  # Cost of delivery
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)  # Total cost of the order (excluding delivery)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)  # Total cost of the order (including delivery)
+    original_bag = models.TextField(null=False, blank=False, default='')
+    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
 
     def _generate_order_number(self):
         """
