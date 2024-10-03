@@ -60,6 +60,7 @@ INSTALLED_APPS = [
 
      # Other
     'crispy_forms',
+    'profiles',
 ]
 
 # Authentication backends. Order matters: Django tries them in the given order.

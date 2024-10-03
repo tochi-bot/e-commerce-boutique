@@ -26,5 +26,6 @@ urlpatterns = [
     path('bag/', include('bag.urls')),  # Include the URLs for your bag app
     path('accounts/', include('allauth.urls')),  # Include allauth URLs for account management
     path('checkout/', include('checkout.urls')), # include the URLS for checkout app
+    path('profile/', include('profiles.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
