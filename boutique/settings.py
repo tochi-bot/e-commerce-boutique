@@ -33,7 +33,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '8000-tochibot-ecommercebouti-e72uu2l43y9.ws.codeinstitute-ide.net',  # Add your development or production domains here
-    'bourtique-ado.herokuapp.com'
+    'bourtique-ado-fd30fa01f710.herokuapp.com'
 ]
 
 # Add trusted origins for CSRF protection. These should match the domains in ALLOWED_HOSTS.
