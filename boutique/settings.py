@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os  # Add this import
+import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,6 +33,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '8000-tochibot-ecommercebouti-e72uu2l43y9.ws.codeinstitute-ide.net',  # Add your development or production domains here
+    'bourtique-ado.herokuapp.com'
 ]
 
 # Add trusted origins for CSRF protection. These should match the domains in ALLOWED_HOSTS.
@@ -128,13 +130,22 @@ WSGI_APPLICATION = 'boutique.wsgi.application'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
-# Database configuration. Uses SQLite by default.
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',  # Path to the database file
+
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+
 
 # Password validation to enforce strong passwords.
 AUTH_PASSWORD_VALIDATORS = [
