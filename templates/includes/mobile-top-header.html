@@ -46,7 +46,7 @@
         {% if request.user.is_authenticated %}
             <!-- Additional option for superusers -->
             {% if request.user.is_superuser %}
-                <a href="{% url 'account_logout' %}" class="dropdown-item">Product Management</a>
+                <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
             {% endif %}
             <!-- Link to the user's profile -->
             <a href="#" class="dropdown-item">My Profile</a>
