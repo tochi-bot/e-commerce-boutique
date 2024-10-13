@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', '')
+SECRET_KEY = os.environ.get('SECRET_KEY', '913c28049f196863c3678313e1a93f0b65b2db6d4b9954d68991be0c21675b26')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -40,6 +40,7 @@ ALLOWED_HOSTS = [
 # Add trusted origins for CSRF protection. These should match the domains in ALLOWED_HOSTS.
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-tochibot-ecommercebouti-e72uu2l43y9.ws.codeinstitute-ide.net',
+    'https://bourtique-ado-fd30fa01f710.herokuapp.com',
 ]
 
 # Application definition
@@ -195,7 +196,7 @@ if 'USE_AWS' in os.environ:
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 # Default primary key field type
-#DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'  # Default primary key field type
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'  # Default primary key field type
 
 
 # Stripe
